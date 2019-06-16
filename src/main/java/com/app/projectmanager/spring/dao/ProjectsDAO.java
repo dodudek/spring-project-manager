@@ -1,8 +1,9 @@
 package com.app.projectmanager.spring.dao;
 
 import com.app.projectmanager.spring.model.Projects;
-
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
 
 import java.util.List;
 

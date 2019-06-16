@@ -1,5 +1,7 @@
 package com.app.projectmanager.spring.model;
 
+import javax.persistence.*;
+
 @Entity
 @Table
 public class Projects {
