@@ -6,34 +6,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/projects")
 public class ProjectsController {
 
     @Autowired
     private ProjectsService projectsService;
 
-    @GetMapping("/projects")
+    @GetMapping
     public List<ProjectsDTO> getAll(){
         return projectsService.findAll();
     }
 
-    @GetMapping("/projects/{id}")
+    @GetMapping("/{id}")
     public ProjectsDTO get(@PathVariable int id){
         return projectsService.find(id);
     }
 
-    @DeleteMapping("/projects/{id}")
+    @DeleteMapping("/{id}")
     public ProjectsDTO delete(@PathVariable int id){
         return projectsService.remove(id);
     }
 
-    @Validated
-    @PostMapping("/projects")
-    public ProjectsDTO add(@RequestBody @NotNull ProjectsDTO dto ){
+    @PostMapping
+    public ProjectsDTO add(@RequestBody @NotNull @Valid ProjectsDTO dto ){
         return projectsService.add(dto);
+    }
+
+    @PutMapping
+    public ProjectsDTO update(@RequestBody @NotNull @Valid ProjectsDTO dto ){
+        return projectsService.update(dto);
     }
 }
